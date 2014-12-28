@@ -1,0 +1,5 @@
+
+.clearfix{ clear:both; height:0; line-height:0; }
+.widget-content p{ clear:both; }
+.checkbox-label{ display:block; float:left; width:90%; }
+input[type="checkbox"]{ display:block;  margin:0; float:right; }
