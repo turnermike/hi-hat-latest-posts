@@ -1,4 +1,4 @@
-.zync-latest-posts-widget *{ margin:0; padding:0; }
-.zync-latest-posts-widget{ font-size:1em; }
-.zync-latest-posts-widget .post_date{ font-size:1em; color:#707070;}
-.zync-latest-posts-widget h1{ font-size:1em; }
+.latest-post-custom-post-types *{ margin:0; padding:0; }
+.latest-post-custom-post-types{ font-size:1em; }
+.latest-post-custom-post-types .post_date{ font-size:1em; color:#707070;}
+.latest-post-custom-post-types h1{ font-size:1em; }

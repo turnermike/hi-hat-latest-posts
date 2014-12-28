@@ -16,8 +16,8 @@
  * Plugin URI:        http://hi-hatconsulting.com
  * Description:       A plugin for displaying the latest posts for a custom post type.
  * Version:           1.0.0
- * Author:            Zync Communications Inc. - Mike Turner
- * Author URI:        http://zync.ca
+ * Author:            Mike Turner
+ * Author URI:        http://hi-hatconsulting.com
  * Text Domain:       latest-posts-custom-post-types
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

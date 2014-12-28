@@ -1,5 +1,5 @@
 
-.clearfix{ clear:both; height:0; line-height:0; }
-.widget-content p{ clear:both; }
-.checkbox-label{ display:block; float:left; width:90%; }
-input[type="checkbox"]{ display:block;  margin:0; float:right; }
+.latest-posts-custom-post-types-wrapper .clearfix{ clear:both; height:0; line-height:0; }
+.latest-posts-custom-post-types-wrapper .widget-content p{ clear:both; }
+.latest-posts-custom-post-types-wrapper .checkbox-label{ display:block; float:left; width:90%; }
+.latest-posts-custom-post-types-wrapper input[type="checkbox"]{ display:block;  margin:0; float:right; }

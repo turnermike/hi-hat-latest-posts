@@ -14,8 +14,8 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 	//constructor
 	function Latest_Posts_Custom_Post_Types_Widget(){
 
-		$name = __('Latest Posts Widget (Zync)', 'latest-posts-custom-post-types');
-		$desc = __('A custom widget to the lastest posts for a user defined post type. Developed by Zync.', 'latest-posts-custom-post-types');
+		$name = __('Latest Posts Custom Post Types', 'latest-posts-custom-post-types');
+		$desc = __('A plugin for displaying the latest posts for a custom post type.', 'latest-posts-custom-post-types');
 		$class_name = 'latest-posts-custom-post-types';
 		parent::WP_Widget(false, $name, array('classname' => $class_name, 'description' => $desc));
 	}
@@ -46,6 +46,7 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 		     $display_excerpt = '';
 		}
 		?>
+		<div class="latest-posts-custom-post-types-wrapper">
 		<!-- title -->
 		<p>
 		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'latest-posts-custom-post-types'); ?></label>
@@ -104,6 +105,7 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 		</p>
 
 		<p>This widget is used to display the latest posts for a user defined post type. There are no required fields. If values are not provided, defaults will be used.</p>
+		</div>
 
 		<?php
 	}
@@ -182,8 +184,8 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 				// taxonomy names are the post_name with the type of taxonomy appended to it
 				// for example the taxonomy name for Buyer/Seller News Categories is buyer-seller-news-category
 				// that's the post_name 'buyer-seller-news' with '-category' appended to the end if it
+				// echo get_term_links($post->ID, $post_type . '-category');
 
-				echo get_term_links($post->ID, $post_type . '-category');
 				if($display_date === 'true'){
 	                $date = mysql2date('F j, Y', $post->post_date);
 	                echo "<p class='post_date'>$date</p>";
@@ -193,7 +195,9 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 				if($display_excerpt === 'true'){
 					echo wpautop(get_the_excerpt());
 				}
-				echo "Topics: " . get_term_links($post->ID, $post_type . '-tag');
+
+				// echo "Topics: " . get_term_links($post->ID, $post_type . '-tag');
+
 				echo "</li>";
 
 			endwhile;
