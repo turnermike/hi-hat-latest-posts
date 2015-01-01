@@ -1,24 +1,24 @@
 <?php
 /**
- * The WordPress Plugin Boilerplate.
+ * Hi-hat Latest Posts
  *
  * A foundation off of which to build well-documented WordPress plugins that
  * also follow WordPress Coding Standards and PHP best practices.
  *
- * @package   Latest_Posts_Custom_Post_Types
+ * @package   Hi_Hat_Latest_Posts
  * @author    Mike Turner <turner.mike@gmail.com>
  * @license   GPL-2.0+
  * @link      http://hi-hatconsulting.com
  * @copyright 2014 Hi-hat Consulting
  *
  * @wordpress-plugin
- * Plugin Name:       Latest Posts Custom Post Types
+ * Plugin Name:       Hi-hat Latest Posts
  * Plugin URI:        http://hi-hatconsulting.com
- * Description:       A plugin for displaying the latest posts for a custom post type.
+ * Description:       A plugin for displaying the latest posts of a Custom Post Type. Date and Excerpt fields are optional. (WIDGET ONLY)
  * Version:           1.0.0
  * Author:            Mike Turner
  * Author URI:        http://hi-hatconsulting.com
- * Text Domain:       latest-posts-custom-post-types
+ * Text Domain:       hi-hat-latest-posts
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * WordPress-Plugin-Boilerplate: v2.6.1
@@ -37,10 +37,10 @@ if ( ! defined( 'WPINC' ) ) {
 /*
  * @TODO:
  *
- * - replace `class-latest-posts-custom-post-types.php` with the name of the plugin's class file
+ * - replace `class-hi-hat-latest-posts.php` with the name of the plugin's class file
  *
  */
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-latest-posts-custom-post-types.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'public/class-hi-hat-latest-posts.php' );
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
@@ -48,18 +48,18 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/class-latest-posts-custom-po
  *
  * @TODO:
  *
- * - replace Latest_Posts_Custom_Post_Types with the name of the class defined in
- *   `class-latest-posts-custom-post-types.php`
+ * - replace Hi_Hat_Latest_Posts with the name of the class defined in
+ *   `class-hi-hat-latest-posts.php`
  */
-register_activation_hook( __FILE__, array( 'Latest_Posts_Custom_Post_Types', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Latest_Posts_Custom_Post_Types', 'deactivate' ) );
+register_activation_hook( __FILE__, array( 'Hi_Hat_Latest_Posts', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Hi_Hat_Latest_Posts', 'deactivate' ) );
 
 /*
  * @TODO:
  *
- * - replace Latest_Posts_Custom_Post_Types with the name of the class defined in
- *   `class-latest-posts-custom-post-types.php`
+ * - replace Hi_Hat_Latest_Posts with the name of the class defined in
+ *   `class-hi-hat-latest-posts.php`
  */
-add_action( 'plugins_loaded', array( 'Latest_Posts_Custom_Post_Types', 'get_instance' ) );
+add_action( 'plugins_loaded', array( 'Hi_Hat_Latest_Posts', 'get_instance' ) );
 
 

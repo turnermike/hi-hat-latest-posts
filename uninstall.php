@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package   Latest_Posts_Custom_Post_Types
+ * @package   Hi_Hat_Latest_Posts
  * @author    Mike Turner <turner.mike@gmail.com>
  * @license   GPL-2.0+
  * @link      http://hi-hatconsulting.com

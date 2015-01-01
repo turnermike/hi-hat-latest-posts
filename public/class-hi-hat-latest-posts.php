@@ -1,22 +1,22 @@
 <?php
 /**
- * Plugin Name.
+ * Hi-hat Latest Posts
  *
- * @package   Latest_Posts_Custom_Post_Types
+ * @package   Hi_Hat_Latest_Posts
  * @author    Mike Turner <turner.mike@gmail.com>
  * @license   GPL-2.0+
  * @link      http://hi-hatconsulting.com
  * @copyright 2014 Hi-hat Consulting
  */
 
-class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
+class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 
 	//constructor
-	function Latest_Posts_Custom_Post_Types_Widget(){
+	function Hi_Hat_Latest_Posts_Widget(){
 
-		$name = __('Latest Posts Custom Post Types', 'latest-posts-custom-post-types');
-		$desc = __('A plugin for displaying the latest posts for a custom post type.', 'latest-posts-custom-post-types');
-		$class_name = 'latest-posts-custom-post-types';
+		$name = __('Hi-hat Lastest Posts', 'hi-hat-latest-posts');
+		$desc = __('A plugin for displaying the latest posts for a custom post type.', 'hi-hat-latest-posts');
+		$class_name = 'hi-hat-latest-posts';
 		parent::WP_Widget(false, $name, array('classname' => $class_name, 'description' => $desc));
 	}
 
@@ -46,15 +46,15 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 		     $display_excerpt = '';
 		}
 		?>
-		<div class="latest-posts-custom-post-types-wrapper">
+		<div class="hi-hat-latest-posts-wrapper">
 		<!-- title -->
 		<p>
-		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'latest-posts-custom-post-types'); ?></label>
+		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'hi-hat-latest-posts'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
 		<!-- post qty -->
 		<p>
-		<label for="<?php echo $this->get_field_id('post_qty'); ?>"><?php _e('Number of Posts to Display', 'latest-posts-custom-post-types'); ?></label>
+		<label for="<?php echo $this->get_field_id('post_qty'); ?>"><?php _e('Number of Posts to Display', 'hi-hat-latest-posts'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('post_qty'); ?>" name="<?php echo $this->get_field_name('post_qty'); ?>" type="text" value="<?php echo $post_qty; ?>" />
 		</p>
 		<!-- post type -->
@@ -67,7 +67,7 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 			if($all_post_types) :
 		?>
 				<p>
-				<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php _e('Post Type', 'latest-posts-custom-post-types'); ?></label>
+				<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php _e('Post Type', 'hi-hat-latest-posts'); ?></label>
 				<select class="widefat" id="<?php echo $this->get_field_id('post_type'); ?>" name="<?php echo $this->get_field_name('post_type'); ?>">
 				<option value=""></option>
 				<?php
@@ -88,7 +88,7 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 			if($display_date === 'true'){ $checked = ' checked="checked"'; }
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id('display_date'); ?>" class="checkbox-label"><?php _e('Display the Post Date?', 'latest-posts-custom-post-types'); ?></label>&nbsp;&nbsp;
+		<label for="<?php echo $this->get_field_id('display_date'); ?>" class="checkbox-label"><?php _e('Display the Post Date?', 'hi-hat-latest-posts'); ?></label>&nbsp;&nbsp;
 		<input type="checkbox" id="<?php echo $this->get_field_id('display_date'); ?>" name="<?php echo $this->get_field_name('display_date'); ?>" <?php echo $checked; ?> />
 		<div class="clearfix"></div>
 
@@ -99,7 +99,7 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 			if($display_excerpt === 'true'){ $checked = ' checked="checked"'; }
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id('display_excerpt'); ?>" class="checkbox-label"><?php _e('Display the Excerpt?', 'latest-posts-custom-post-types'); ?></label>&nbsp;&nbsp;
+		<label for="<?php echo $this->get_field_id('display_excerpt'); ?>" class="checkbox-label"><?php _e('Display the Excerpt?', 'hi-hat-latest-posts'); ?></label>&nbsp;&nbsp;
 		<input type="checkbox" id="<?php echo $this->get_field_id('display_excerpt'); ?>" name="<?php echo $this->get_field_name('display_excerpt'); ?>" <?php echo $checked; ?> />
 		<div class="clearfix"></div>
 		</p>
@@ -214,7 +214,7 @@ class Latest_Posts_Custom_Post_Types_Widget extends WP_Widget{
 
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("Latest_Posts_Custom_Post_Types_Widget");'));
+add_action('widgets_init', create_function('', 'return register_widget("Hi_Hat_Latest_Posts_Widget");'));
 
 
 
@@ -228,10 +228,10 @@ add_action('widgets_init', create_function('', 'return register_widget("Latest_P
  *
  * @TODO: Rename this class to a proper name for your plugin.
  *
- * @package Latest_Posts_Custom_Post_Types
+ * @package Hi_Hat_Latest_Posts
  * @author  Your Name <email@example.com>
  */
-class Latest_Posts_Custom_Post_Types {
+class Hi_Hat_Latest_Posts {
 
 	/**
 	 * Plugin version, used for cache-busting of style and script file references.
@@ -255,7 +255,7 @@ class Latest_Posts_Custom_Post_Types {
 	 *
 	 * @var      string
 	 */
-	protected $plugin_slug = 'latest-posts-custom-post-types';
+	protected $plugin_slug = 'hi-hat-latest-posts';
 
 	/**
 	 * Instance of this class.
