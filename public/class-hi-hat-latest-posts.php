@@ -276,8 +276,13 @@ class Hi_Hat_Latest_Posts {
 
 		// enqueue admin styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
+
 		// enqueue public styles
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
+
+		// shortcodes
+		add_shortcode( 'hihat_latest_posts', array( $this, 'hihat_latest_posts_handler' ) );
+
 	}
 
 	/**
@@ -406,11 +411,6 @@ class Hi_Hat_Latest_Posts {
 
 	}
 
-	/**
-	 * Fired for each blog when the plugin is activated.
-	 *
-	 * @since    1.0.0
-	 */
 	private static function single_activate() {
 
 		//debug
@@ -418,31 +418,32 @@ class Hi_Hat_Latest_Posts {
 
 	}
 
-	/**
-	 * Fired for each blog when the plugin is deactivated.
-	 *
-	 * @since    1.0.0
-	 */
 	private static function single_deactivate() {
 
 	}
 
-	/**
-	 * Register and enqueue public-facing style sheet.
-	 *
-	 * @since    1.0.0
-	 */
 	public function enqueue_public_styles() {
 		wp_enqueue_style($this->plugin_slug . '-public-styles', plugins_url('styles.css', __FILE__), array(), '1.0.0');
 	}
 
-	/**
-	 * Register and enqueue admin style sheet.
-	 *
-	 * @since    1.0.0
-	 */
 	public function enqueue_admin_styles() {
 		wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('../admin/styles.css', __FILE__), array(), '1.0.0');
+	}
+
+	public function hihat_latest_posts_handler($attributes) {
+
+        //get optional attributes and assign default values if not present
+        extract( shortcode_atts( array(
+            'post_qty' => 4
+        ), $attributes ) );
+
+        return self::output_view($post_qty, NULL, NULL);
+
+	}
+
+	public function output_view(){
+
+		return 'this is my shortcode content';
 	}
 
 
