@@ -5,5 +5,5 @@ This Wordpress plugin provides a widget similar to the default Recent Posts widg
 ## To-do
 
 1. Add shortcode functionality.
-2. Add thumbnails.
+2. Add templating capabilies.
 
