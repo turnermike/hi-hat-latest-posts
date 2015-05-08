@@ -6,7 +6,7 @@
  * @author    Mike Turner <turner.mike@gmail.com>
  * @license   GPL-2.0+
  * @link      http://hi-hatconsulting.com
- * @copyright 2014 Hi-hat Consulting
+ * @copyright 2015 Hi-hat Consulting5
  */
 
 class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
@@ -38,12 +38,16 @@ class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 		     if(isset($instance['display_excerpt'])){
 		     	$display_excerpt = $instance['display_excerpt'];
 		     }
+		     if(isset($instance['display_thumbnail'])){
+		     	$display_thumbnail = $instance['display_thumbnail'];
+		     }
 
 		} else {
 		     $title = '';
 		     $post_type = '';
 		     $display_date = '';
 		     $display_excerpt = '';
+		     $display_thumbnail = '';
 		}
 		?>
 		<div class="hi-hat-latest-posts-wrapper">
@@ -91,7 +95,6 @@ class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 		<label for="<?php echo $this->get_field_id('display_date'); ?>" class="checkbox-label"><?php _e('Display the Post Date?', 'hi-hat-latest-posts'); ?></label>&nbsp;&nbsp;
 		<input type="checkbox" id="<?php echo $this->get_field_id('display_date'); ?>" name="<?php echo $this->get_field_name('display_date'); ?>" <?php echo $checked; ?> />
 		<div class="clearfix"></div>
-
 		</p>
 		<!-- display excerpt -->
 		<?php
@@ -101,6 +104,16 @@ class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 		<p>
 		<label for="<?php echo $this->get_field_id('display_excerpt'); ?>" class="checkbox-label"><?php _e('Display the Excerpt?', 'hi-hat-latest-posts'); ?></label>&nbsp;&nbsp;
 		<input type="checkbox" id="<?php echo $this->get_field_id('display_excerpt'); ?>" name="<?php echo $this->get_field_name('display_excerpt'); ?>" <?php echo $checked; ?> />
+		<div class="clearfix"></div>
+		</p>
+		<!-- display thumbnail -->
+		<?php
+			$checked = '';
+			if($display_thumbnail === 'true'){ $checked = ' checked="checked"'; }
+		?>
+		<p>
+		<label for="<?php echo $this->get_field_id('display_thumbnail'); ?>" class="checkbox-label"><?php _e('Display the Thumbnail?', 'hi-hat-latest-posts'); ?></label>&nbsp;&nbsp;
+		<input type="checkbox" id="<?php echo $this->get_field_id('display_thumbnail'); ?>" name="<?php echo $this->get_field_name('display_thumbnail'); ?>" <?php echo $checked; ?> />
 		<div class="clearfix"></div>
 		</p>
 
@@ -121,6 +134,7 @@ class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 		$instance['post_type'] = strip_tags($new_instance['post_type']);
 		$instance['display_date'] = $new_instance['display_date'] ? 'true' : 'false';
 		$instance['display_excerpt'] = $new_instance['display_excerpt'] ? 'true' : 'false';
+		$instance['display_thumbnail'] = $new_instance['display_thumbnail'] ? 'true' : 'false';
 
 		return $instance;
 
@@ -138,7 +152,8 @@ class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 			'post_qty'			=> 4,
 			'post_type' 		=> 'posts',
 			'display_date'		=> true,
-			'display_excerpt' 	=> false
+			'display_excerpt' 	=> false,
+			'display_thumbnail' => true
 		);
 
 		// get the widget values
@@ -147,6 +162,7 @@ class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 		$post_type = $instance['post_type'];
 		$display_date = ($instance['display_date'] === 'true') ? 'true' : 'false';
 		$display_excerpt = ($instance['display_excerpt'] === 'true') ? 'true' : 'false';
+		$display_thumbnail = ($instance['display_thumbnail'] === 'true') ? 'true' : 'false';
 
 		//assign defaults if user data is not set
 		if(!$title){
@@ -185,6 +201,10 @@ class Hi_Hat_Latest_Posts_Widget extends WP_Widget{
 				// for example the taxonomy name for Buyer/Seller News Categories is buyer-seller-news-category
 				// that's the post_name 'buyer-seller-news' with '-category' appended to the end if it
 				// echo get_term_links($post->ID, $post_type . '-category');
+
+				if($display_thumbnail === 'true'){
+					the_post_thumbnail('thumbnail');
+				}
 
 				if($display_date === 'true'){
 	                $date = mysql2date('F j, Y', $post->post_date);
@@ -276,13 +296,8 @@ class Hi_Hat_Latest_Posts {
 
 		// enqueue admin styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
-
 		// enqueue public styles
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
-
-		// shortcodes
-		add_shortcode( 'hihat_latest_posts', array( $this, 'hihat_latest_posts_handler' ) );
-
 	}
 
 	/**
@@ -411,6 +426,11 @@ class Hi_Hat_Latest_Posts {
 
 	}
 
+	/**
+	 * Fired for each blog when the plugin is activated.
+	 *
+	 * @since    1.0.0
+	 */
 	private static function single_activate() {
 
 		//debug
@@ -418,32 +438,31 @@ class Hi_Hat_Latest_Posts {
 
 	}
 
+	/**
+	 * Fired for each blog when the plugin is deactivated.
+	 *
+	 * @since    1.0.0
+	 */
 	private static function single_deactivate() {
 
 	}
 
+	/**
+	 * Register and enqueue public-facing style sheet.
+	 *
+	 * @since    1.0.0
+	 */
 	public function enqueue_public_styles() {
 		wp_enqueue_style($this->plugin_slug . '-public-styles', plugins_url('styles.css', __FILE__), array(), '1.0.0');
 	}
 
+	/**
+	 * Register and enqueue admin style sheet.
+	 *
+	 * @since    1.0.0
+	 */
 	public function enqueue_admin_styles() {
 		wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('../admin/styles.css', __FILE__), array(), '1.0.0');
-	}
-
-	public function hihat_latest_posts_handler($attributes) {
-
-        //get optional attributes and assign default values if not present
-        extract( shortcode_atts( array(
-            'post_qty' => 4
-        ), $attributes ) );
-
-        return self::output_view($post_qty, NULL, NULL);
-
-	}
-
-	public function output_view(){
-
-		return 'this is my shortcode content';
 	}
 
 
